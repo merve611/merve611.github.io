@@ -49,6 +49,41 @@
 
 
 <p>Android Studio indirdikten sonra Visual Studio Code da kurup bilgisaylarımızı flutter çalışmaya hazır hale getirdik.</p>
+
+<p>Flutter’da değişken atamalarını, aynı anda birden fazla değişken tanımlanabilme, döngü yapıları gibi ilk konulara kısaca değindik.<br> Flutter’da proje oluşturduktan sonra bir main metodu açıldı.<br> Bu sayfada Flutter’ın ana hatlarıyla genel kullanılan bir class mevcut olduğunu ve onun içinde yer alan body, children kısımlarını gördük. Flutter projesini ana hatlarıyla oluşturmuş olduk. <br>Projemizi bu haliyle çalıştırdığımızda işletim sistemimize göre Android ya da IOS emilatörünü çalıştırdık. </p>
+
+
+
+<p>Ana ayrıntıları öğrendikten sonra Buton oluşturmaya baktık. Flutter’da normal bir buton Raised Button olarak geçiyor.</p>
+<p> RaisedButton(
+	  <b>color: Colors.green,</b>
+	 <b> highlightColor: Colors.red,</b>
+	 <b> elevation: 10,</b>
+	 <b> child: Text(</b>
+	    <b>"Merhaba Dünya",</b>
+	   <b> style: TextStyle(color: Colors.white),</b>
+	   <b> ),</b>
+	 <b> onPressed: () {</b>
+	  <b>  print("Butona Tıklandı");</b>
+	 <b> },     </b>
+	<b>),</b>
+</p>
+<p>Buton oluşturduğumuzda click olayını gerçekleştirmemiz gerekir. Bu olaya onPressed diyoruz.</p>
+<p>Flutter da Timer konusuna değindik. Kullanacağımız bir interval değeri var ve genelde bu değere deneme amaçlı 1 verilir.</p>
+<p>const timeout = const Duration(seconds: 3);
+         <b>const ms = const Duration(milliseconds: 1);
+
+        <b> startTimeout([int milliseconds]) {</b>
+        <b>   var duration = milliseconds == null ? timeout : ms * milliseconds;</b>
+       <b>    return new Timer(duration, handleTimeout);</b>
+        <b>   }</b>
+       <b>   ...</b>
+       <b>  void handleTimeout() {  // callback </b>
+       <b>   ...</b>
+        <b>   }</b>
+
+
+</p>
 <p></p>
 <p></p>
 </h5>
