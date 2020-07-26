@@ -56,31 +56,31 @@
 
 <p>Ana ayrıntıları öğrendikten sonra Buton oluşturmaya baktık. Flutter’da normal bir buton Raised Button olarak geçiyor.</p>
 <p> RaisedButton(
-	  <b>color: Colors.green,</b>
-	 <b> highlightColor: Colors.red,</b>
-	 <b> elevation: 10,</b>
-	 <b> child: Text(</b>
-	    <b>"Merhaba Dünya",</b>
-	   <b> style: TextStyle(color: Colors.white),</b>
-	   <b> ),</b>
-	 <b> onPressed: () {</b>
-	  <b>  print("Butona Tıklandı");</b>
-	 <b> },     </b>
-	<b>),</b>
+	  <b><br>color: Colors.green,</b>
+	 <b> <br>highlightColor: Colors.red,</b>
+	 <b> <br>elevation: 10,</b>
+	 <b> <br>child: Text(</b>
+	    <b><br>"Merhaba Dünya",</b>
+	   <b> <br>style: TextStyle(color: Colors.white),</b>
+	   <b> <br>),</b>
+	 <b> <br>onPressed: () {</b>
+	  <b>  <br>print("Butona Tıklandı");</b>
+	 <b><br> },     </b>
+	<b>)<br>,</b>
 </p>
 <p>Buton oluşturduğumuzda click olayını gerçekleştirmemiz gerekir. Bu olaya onPressed diyoruz.</p>
 <p>Flutter da Timer konusuna değindik. Kullanacağımız bir interval değeri var ve genelde bu değere deneme amaçlı 1 verilir.</p>
-<p>const timeout = const Duration(seconds: 3);
-         <b>const ms = const Duration(milliseconds: 1);
+<p><br>const timeout = const Duration(seconds: 3);
+         <b><br>const ms = const Duration(milliseconds: 1);
 
-        <b> startTimeout([int milliseconds]) {</b>
-        <b>   var duration = milliseconds == null ? timeout : ms * milliseconds;</b>
-       <b>    return new Timer(duration, handleTimeout);</b>
-        <b>   }</b>
-       <b>   ...</b>
-       <b>  void handleTimeout() {  // callback </b>
-       <b>   ...</b>
-        <b>   }</b>
+        <b><br> startTimeout([int milliseconds]) {</b>
+        <b>  <br> var duration = milliseconds == null ? timeout : ms * milliseconds;</b>
+       <b>  <br>  return new Timer(duration, handleTimeout);</b>
+        <b> <br>  }</b>
+       <b>  <br> ...</b>
+       <b>  <br>void handleTimeout() {  // callback </b>
+       <b>   <br>...</b>
+        <b>  <br> }</b>
 
 
 </p>
