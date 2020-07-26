@@ -55,7 +55,7 @@
 
 
 <p>Ana ayrıntıları öğrendikten sonra Buton oluşturmaya baktık. Flutter’da normal bir buton Raised Button olarak geçiyor.</p>
-<p> RaisedButton(
+<p> <pre>RaisedButton(</pre>
 	  <b><br><pre> color: Colors.green,</pre></b>
 	 <b> <br><pre>highlightColor: Colors.red,</pre></b>
 	 <b> <br><pre>elevation: 10,</pre></b>
@@ -73,14 +73,14 @@
 <p><br>const timeout = const Duration(seconds: 3);
          <b><br>const ms = const Duration(milliseconds: 1);
 
-        <b><br> startTimeout([int milliseconds]) {</pre></b>
-        <b>  <br> var duration = milliseconds == null ? timeout : ms * milliseconds;</pre></b>
-       <b>  <br>  return new Timer(duration, handleTimeout);</pre></b>
-        <b> <br>  }</pre></b>
-       <b>  <br> ...</pre></b>
-       <b>  <br>void handleTimeout() {  // callback </pre></b>
-       <b>   <br>...</pre></b>
-        <b>  <br> }</pre></b>
+        <b><br><pre> startTimeout([int milliseconds]) {</pre></b>
+        <b>  <br><pre> var duration = milliseconds == null ? timeout : ms * milliseconds;</pre></b>
+       <b>  <br><pre>  return new Timer(duration, handleTimeout);</pre></b>
+        <b> <br><pre>  }</pre></b>
+       <b>  <br><pre> ...</pre></b>
+       <b>  <br><pre>void handleTimeout() {  // callback </pre></b>
+       <b>   <br><pre>...</pre></b>
+        <b>  <br><pre> }</pre></b>
 
 
 </p>
