@@ -1,3 +1,4 @@
+<html>
 <body>
 
 <h1>Staj Defteri</h1>
@@ -7,7 +8,7 @@
 <p> Staj da ilgileneceğimiz projelerle alakalı ilerlemelerimizi haftalık olarak GİTHUB’ da oluşturacağımız sayfaya atmamız istenildi. <br>Onun öncesinde GİTHUB girişi oluşturduk.<br> Versiyon Kontrol Sistemi, Git ’in ne olduğunu, neden kullanmamız gerektiği, Git Servislerini, Temel Git komutlarını ve en sonunda Git in nasıl yüklenildiğini uygulamalı olarak gördük. </p>
 <p>  <b>Versiyon Kontrol Sistemi(VCS):</b>   
 <br>VCS’nin amacı birden fazla yazılımcının aynı anda birbirlerinin değişikliklerinden etkilenmeden bir proje üzerinde çalışabilmesini sağlamaktır.<br> Gerektiğinde eski kodlarımıza dönerek farklı bir projede kullanabileceğiz kodları buradan direk aktarabiliriz. <br>Gelişen teknoloji ile birlikte her geçen gün yeni kurallar çıkmaktadır.<br> VCS eski kodlarla yeni kodları karşılaştırmamıza da yarar.
-<br> <img src="vcs.jpg"  align="left"/>
+<br> <img src="C:\Users\Merve ÇAKIROĞLU\Desktop\staj_resimler\vcs.jpg"  alt ="merve" width ="200" height = "200"/>
 
      </p>
 
@@ -23,7 +24,7 @@
 <p>Eğer Google’ın ıp’sını kullanacaksak doğrudan BitBucket üzerinden projelerimize  entegre edebiliriz.</p>
 <p>Github da ise açık kaynaklı proje sayısı fazladır. Aradığımız çoğu projeyi bulabiliyoruz. Öğrenciler için birçok sistem sunuyorlar.</p>
 <p>GitHub’da yeni repo oluşturmayı uygulamalı olarak gördük. Repo dediğimiz yeni bir proje oluşturmak anlamına da geliyor;</p>
-<p> <br> <img src="repo.jpg"  align="left"/></p>
+<p> <br> <img src="C:\Users\Merve ÇAKIROĞLU\Desktop\staj_resimler\repo.jpg"  alt ="merve" width ="200" height = "200"/></p>
 
 <p>Eğer public kısmını seçersek projemiz internette herkese açık olarak yayınlanıyor. Fakat private seçersek bu projeyi sadece biz görebiliyoruz.</p>
 
@@ -87,27 +88,193 @@
         <b>  <br><pre> }</pre></b>
 
 
+
+<p>Flutter’da setState() Metodunun Önemi:</p>
+<p>Uygulamalı olarak oluşturduğumuz değişikliklerde eğer setState () metodunu eklemezsek, hata görmesek de çıktılarda yaptığımız değişiklikleri ve güncellemeleri göremeyebiliriz. <br>Bu nedenle setState () metodunu eklemeyi unutmamalıyız. Örnek bir setState;</p>
+<p><code>setState (() {
+    _counter++;
+  });
+ </code></p>
+<p>Dinamik bir uygulama yaptığımızda yaptığımız işlemleri setState içine almamızda yarar vardır. <br>Bazen iç içe setState () de kullandığımız olabilir.</p>
+<p>Flutter’da Checkbox oluşturma örneği;</p>
+<p><code>. . </code></p>
+<p>bool checkBoxValue = false;
+. . . 
+Child: Checkbox(
+	value: checkBoxValue,
+	onChanged: (bool value){
+	  print(value);
+
+	setState((){
+	  checkBoxValue = value;
+});
+},
+)
+Text(“Deneme”),
 </p>
+<p>Flutter’da Radio Button oluşturma örneği;</p>
+<p><code> int group = 1;
+. . . 
+Radio(
+   Value: 1;
+   groupValue: group,
+   onChanged: (T){
+     print(T);
+     setState(() {  
+   	group = T;
+});
+)
+Radio(
+   Value: 2;
+   groupValue: group,
+   onChanged: (T){
+     print(T);
+     setState(() {  
+   	group = T;
+
+}
+)
+
+</code></p>
 <p></p>
 <p></p>
+<p></p>
+
+
+
+
 </h5>
 
 
 
 
+
+
+
+
+
+
+
+
+<hr> </hr>
+
+<h2>3. Gün (22.07.2020)</h2>
+
+<h5>
+
+<p>Bugünkü eğitimimizde asp.net MVC yönetim panelli üzerinde uygulama oluşturduk. </p>
+
+<p>     Ders başlangıcında asp.net ve MVC arasındaki farklara değindik.<br> Asp.net’ de belirli bir proje yapısı yoktur bu yapıyı biz kendi tecrübelerimize göre oluşturuyoruz.<br> Bu yapısı nedeniyle de proje büyüdükçe karışıklık ortaya çıkıyor. <br>Fakat MVC üzerinde varsayılan olarak bir proje yapısı geliyor. Model, Controller katmanları ayrı geliyor. Dolayısıyla proje ne kadar büyürse büyüsün hangi katmana nerde ulaşacağımızı bilmiş oluyoruz.<br> Katmanlı yapısı sayesinde karmaşıklık azalmış oluyor.</p>
+<p>Farklarından biri de birim test olayıdır. Asp.net de birim test yapmak farklı parametreler işin içine girdiği için işimiz zorlaşıyor.<br>  MVC de ise html sayfaları ve sunucu taraflarını birbirinden ayrıldığı için kodlar kolayca test edilebiliyor. </p>
+<p>Bu bilgilere değindikten sonra Visual Studio kurulumundan bahsettik. </p>
+<p>Visual Studio’dan MVC hazır şablonu ile yeni projemizi oluşturduk. <br> Projedeki açılan klasörleri incelediğimizde content  kısmında css, font vb. bileşenler tutulur.<br>  Controller kısmında Account, Home(hangi sayfaya gideceğimizi gösteren metotları barındırır) ve Manage controllerı var. <br> View de ise kullanıcının internet tarayıcısı üzerinden açtığında karşısına gelen web sayfasının kodlandığı bölümdür.</p>
+<p>Model kısmında veri tabanı işlemlerimizin veya çoklu parametrelerin classların tanımlamaları bu alanda yaptık.  </p>
+<p>Model oluşturma:</p>
+<p><code>namespace StajUygulama.Models
+{
+    using System;
+    using System.Collections.Generic;
+    
+    public class Students
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string BirthPlace { get; set; }
+    }
+}
+</code>	</p>
+<p>
+Gördüğünüz gibi, Students tablosunda varsaydığımız kolonları “Student” sınıfına yazmış bulunmaktayız.
+</p>
+<p>Model katmanında oluşturduğumuz Students sınıfından bir nesne üretilerek öncelikle Action metod içinde işlemlerimizi yaptık.</p>
+<p><code>public ActionResult Students()
+        {
+            var students = new List<StudentModel>();
+
+            students.Add(new StudentModel() { Id = 4, Name = "Ahmet", Surname = "KOÇ", BirthPlace = "Erzurum" });
+            students.Add(new StudentModel() { Id = 5, Name = "Ayşe", Surname = "YILDIZ", BirthPlace = "Erzurum" });
+            students.Add(new StudentModel() { Id = 6, Name = "Emir", Surname = "KAYA", BirthPlace = "Erzurum" });
+
+            var students = StudentProcess.GetStudents();
+
+            return View(students);
+        }
+</code>	</p>
+<p>Controller Eklemek:</p>
+
+<p>Controller, MVC sistemlerde kullanıcılardan gelen istekler doğrultusunda proje içerisinde bulunan <br>nesnelerin tutulduğu kısmın içerisinden uygun olan nesneleri alarak View aracılığı ile kullanıcıya bilgi sunan bir yapıdır.<br> Controller klasörünün üstüne gelip sağa tıklayıp add butonuna tıklayarak controller’ımızı ekledik. Bu şekilde oluşturduk;</p>
+
+<p><code>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace StajUygulama.Controllers
+{
+    public class Home2Controller : Controller
+    {
+        // GET: Home2
+        public ActionResult Index()
+        {
+            return View();
+        }
+ }
+}
+</code>	</p>
+<p>Students.cshtml, CreateStudent.cshtml ve  EditStudent.cshtml dosyalarına girerek öğrenci ekleme, güncelleme ve silme işlemlerini yaptık; </p>
+<p><br> <img src="C:\Users\Merve ÇAKIROĞLU\Desktop\staj_resimler\student.jpg"  alt ="merve" width ="100" height = "300"/></p>
+<p><br> <img src="C:\Users\Merve ÇAKIROĞLU\Desktop\staj_resimler\editstudent.jpg"  alt ="merve" width ="100" height = "300"/></p>
+<p><br> <img src="C:\Users\Merve ÇAKIROĞLU\Desktop\staj_resimler\createstudent.jpg"  alt ="merve" width ="100" height = "300"/></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
+
+
+</h5>
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr> </hr>
+
+<h2>4. Gün (23.07.2020)</h2>
+
+<hr> </hr>
+
+<h2>5. Gün (24.07.2020)</h2>
+
+
+
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</html>
