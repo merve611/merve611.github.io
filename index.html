@@ -276,6 +276,127 @@ namespace StajUygulama.Controllers
 
 <h2>5. Gün (24.07.2020)</h2>
 
+<p>Bugün ilk dersimizde Visual Studio programını kullanarak C# ‘ta If/else, Switch/Case, For, Foreach ve While yapılarına değindik. <br>Daha sonra öğrencilerin aldıkları notlara göre harf notu atayan ufak bir program yazdık. <br>Bunları bitirdikten sonra ise Xcode Mobil programlama üzerinde eğitmenimiz bizi bilgilendirdi.</p>
+<p>1 ile 100 arasındaki çift sayıları bir dizide toplayan bir for döngüsü yazdık;</p>
+<p><code><br>List<int> iDizi = new List<int>();
+    <br> for (int i=0; i<=100; i++)
+   <br> {
+	<br>  if (i %2 == 0)
+	<br>  {
+<br>	       iDizi.Add(i);
+ <br> }
+  <br>  } 
+</code></p>
+<p>Daha sonra tek sayıları bir dizide çift sayıları başka bir dizide toplayan kodu oluşturduk.<br> Bir başka dizi daha yazdık ve if- else yapısını kullanarak çift ve tek sayıları ayrıştırdık. </p>
+<p>Foreach listeler ya da diziler üzerinde ileri yönlü okuma yapmak için kullanılan döngü yapılarındandır.<br> Özellikle eleman sayısının ya da indeks numarasının bilinmediği durumlarda büyük kolaylık sağlamakta. <br>Örneğin diziye attığımız rastgele sayıların ortalamasını bulan bir programda foreach yapısını inceledik;</p>
+<p><code></p>
+<p><br>Random rastgele = new Random();
+       <br>int toplam = 0;
+       <br>int[] sayilar = new int[10];
+ 
+       <br> for (int i = 0; i < sayilar.Length; i++)
+      <br> {
+      <br> sayilar[i] = rastgele.Next(100);
+      <br> }
+ 
+       <br>foreach (int sayi in sayilar)
+      <br> {
+      <br> toplam += sayi;
+      <br> }
+   
+      <br> Console.WriteLine( (double)toplam / sayilar.Length );
+ 
+     <br>  Console.ReadKey();
+</code>
+</p>
+<p>Switch-Case yapısını anlamak için aşağıdaki örneğe benzer bir örnek yaptık.<br> Case seçeneklerinden sadece birini çalıştırıp, bundan sonra switch-case yapısını terketmesini istediğimiz için her case seçeneğinden sonra break komutunu yerleştirdik. </p>
+<p><br><code>int secim;
+      <br> label:
+            
+      <br>     switch (secim)
+       <br>    {
+        <br>       case 1:
+         <br>          Console.WriteLine("Pazartesi");
+          <br>         break;
+      <br>         case 2:
+        <br>           Console.WriteLine("Salı");
+       <br>            break;
+       <br>        case 3:
+      <br>             Console.WriteLine("Çarşamba");
+       <br>            break;
+        <br>       case 4:
+        <br>           Console.WriteLine("Perşembe");
+        <br>           break;
+        <br>       case 5:
+         <br>          Console.WriteLine("Cuma");
+          <br>         break;
+       <br>        default:
+        <br>           Console.WriteLine("Geçersiz seçim tekrar deneyinn");
+        <br>           goto label;
+        <br>   }
+       <br>    Console.ReadLine();</code>
+</p>
+<p>While döngüsünde bir şart olur ve o şart olana kadar aşağıdaki işlemleri yapar.<br>
+For’daki gibi değişken artırılması veya foreach’deki gibi dizinin eleman sayısı kadar döngü olması gibi bir durum yoktur. <br>Şart sağlanana kadar devam eder. 100’e kadar olan sayıların toplamını bulan bir While döngüsü örneğimiz;
+</p>
+<p><code>int toplam = 0;
+        int i = 0;
+ 
+        while (i < 100)
+        {
+         toplam += i;
+         i++;
+         }</code>
+</p>
+<p>Bu ana yapıları öğrendikten sonra öğrencinin notuna göre harf notu dağıtan bir kod geliştirdik. Yapıda ıf-else kullandık;</p>
+<p><code><br>List<string> strDizi = new List<string>
+<br>strDizi.Add(“Eren”);
+<br>strDizi.Add(“Mehmet Akif”);
+<br>strDizi.Add(“Okan”);
+<br>strDizi.Add(“Satuk Buğra”);
+<br>strDizi.Add(“Şeyma”);
+<br>strDizi.Add(“Merve”);
+<br>int [,] Notlar = new int[,] {{50, 60}, {80, 70}, {75, 70}, {45, 55}, {90, 80}, {30, 35}};
+<br>string[,] HarfNolari = new string[,] {{“eren”,” ”}, {“Mehmet Akif”, “ “}, {“Okan”, “ “}, {“Satuk Buğra”, “ “ }, {“Şeyma”, “ “ }, {“Merve”, “ “ }};
+<br>for(int i; i < strDizi.Count; i++)
+<br>{
+ <br>    int Not = Convert.ToInt32(Notlar[i,0] * 0.4) + Convert.ToInt32(Notlar[i, 1] * 0.6);
+  <br>   if (40 >= Not)
+   <br>    {
+   <br>        HarfNolari[i, 1] = “FF”
+  <br>     }
+  <br>  else if(Not <= 49 & Not >40)
+  <br>     {
+<br>	 HarfNolari[i, 1] = “DD”
+  <br>     }
+  <br>      else if(Not <= 59 & Not >50)
+    <br>   {
+<br>	 HarfNolari[i, 1] = “CC”
+    <br>   }
+   <br>     else if(Not <= 60 & Not >79)
+    <br>   {
+<br>	 HarfNolari[i, 1] = “BB”
+   <br>    }
+   <br>     else if(Not >70)
+    <br>   {
+	<br> HarfNolari[i, 1] = “AA”
+     <br>  }
+<br>}
+</code></p>
+<p>Xcode deneyimlerimizi Swift’de çalıştık. Xcode ‘da karar yapıları diğer dillerle benzerdir fakat diğer dillere göre kodlaması yorucudur. <br>IOS için mobil uygulama geliştirme ortamıdır. Temel olarak işleyişine deyindik. </p>
+<p>Android de Android Studio neyse IOS’da da Xcode odur diye düşünebiliriz.  <br> Swift’i objective-c ‘de yazılmış bazı metotların bir araya getiriliş hali gibi düşünebiliriz. <br>Xcode’ da bütün projelerde main storyboard bir çalışma alanı vardır. </p>
+<p>Label, buton, ekran, text gibi istediğimiz nesneleri ekleyebiliyoruz. </p>
+<p>Ekran özelliklerini de view controller’dan değiştirebiliyoruz.<br> Constraints tasarımla alakalı kısımdır. Sayfa geçişlerinde geçmek istediğimiz sayfayı bulup eğer public değilse Show butonuna tıkladığımızda geçiş sağlanır. </p>
+<p>İki tane değişken türü vardır; var ve let. Var global değişkendir. Let işi bittiği zaman Ram’den silinir.<br> İf- else’ler yine aynı mantıktadır. Satır sonlarında noktalı virgül (;) kullanmıyoruz.</p>
+<p><code><br>let gecenYil: Int = 2017
+ 
+<br>let gelecekYil = 2019
+
+<br>var floatSayi: Float = 20.04 // Float
+ 
+<br>var doubleSayi: Double = 20.04 // Double
+</code></p>
+<p>Xcode herhangi bir uygulama yazdıktan sonra markette yayınlamak için prodact menüsünden arşivi seçtikten sonra önce kodları derliyor daha sonra distrubute e tıkladıktan sonra önümüze seçenekler çıkıyor. <br>Eğer hesabımız önceden bağlıysa AppStore Connect dediğimizde direk Apple’ın sunucusuna gönderir.</p>
 
 
 </body>
