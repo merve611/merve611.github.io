@@ -445,16 +445,58 @@ Projem de ilk olarak veri tabanını oluşturmaya başladım. <br> Mysql veri ta
 
 
 
-
-
-
 <hr> </hr>
 
 <h2>7. Gün (28.07.2020)</h2>
 
+
+<p>Bugün, bir önceki gün oluşturduğum kullanıcılar tablosundaki eksikleri inceledim ve tamamlamaya çalıştım. <br>Proje de yer alan staj yapan öğrencinin staj defterini onaylamasında görevli admin için bu bilgiler gereklidir. <br>Projedeki staj defteriyle alakalı defter bitişi, defterin bitiş tarihi, defteri onaylama ve onaylama tarihi sütunlarını ekledim; </p>
+<p> <br> <img src="D:\merve611.github.io\staj_resimler\kullanicilar_devami.jpg"  alt ="merve" width ="700" height = "300"/></p>
+<p> Tarih belirten sütunlar için datetime türünü kullandım. </p>
+<p> Bu sütunları oluşturduktan sonra deneme amaçlı satırlar ekledim;</p>
+<p>  <br> <img src="D:\merve611.github.io\staj_resimler\devami.jpg"  alt ="merve" width ="700" height = "300"/></p>
+<p> Böylece kullanıcılar tablomu tamamladım. </p>
+<p>Veri tabanı için yeni bir tablo oluşturmaya başladım.  <br>Projeler için bir tablo oluşturdum. Projede admin sayfasında yer alması gereken proje dağıtma işlemi için bu bilgiler gerekli olur. <br> İd, proje adı, proje konusu ve proje içeriği olmak üzere dört tane alan oluşturdum.  </p>
+<p><br> <img src="D:\merve611.github.io\staj_resimler\projeler.jpg"  alt ="merve" width ="700" height = "300"/> </p>
+<p> <br> <img src="D:\merve611.github.io\staj_resimler\projeler_satir.jpg"  alt ="merve" width ="700" height = "300"/></p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+
+
+
+
+
+
+
 <hr> </hr>
 
 <h2>8. Gün (29.07.2020)</h2>
+
+
+<p> Projede bulunan admin için staj defterine girmesini sağlayacak ve staj defterini gün gün onaylaması için staj defteri adında yeni bir tablo oluşturdum. <br> Öğrencinin staj defterinde hangi günde ne yazdığını, onaylama ve onaylama tarihini içeren bir tablodur. <br> Sütunlara gün, gün id, konu, güncelleme tarihi, onay ve onaylama tarihini ekledim.  <br>Sütunların türlerini belirtirken araştırmalarda bulundum. Örneğin gün sütuna tam sayı bir değer gireceğimiz için int türünden seçtim. <br> Konu gibi açıklaması uzun olan sütunların türünü de text seçtim.</p>
+<p>  <br> <img src="D:\merve611.github.io\staj_resimler\staj_defteri.jpg"  alt ="merve" width ="700" height = "300"/></p>
+<p>Burda yazılan metni formatlı olarak orada tutabilmek için veritabanında html olarak sakladım. </p>
+<p> Staj durumunu göstermesi içinde bir tablo oluşturdum. Status adında bir sütun oluşturdum. Stajın onaylanıp onaylanmadığı bilgisini barındıran bir tablodur.</p>
+<p><img src="D:\merve611.github.io\staj_resimler\staj_durumu.jpg"  alt ="merve" width ="700" height = "300"/> </p>
+<p>Toplamda dört adet tablo oluşturdum. Bu tablolar kullanıcılar, projeler, staj defteri ve staj durumu adlı tablolardır.<br> Projeme ait veri tabanı kısmını hallettim. Artık asıl php kodlama kısmına geçtim.  </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+
+<p> </p>
+
 
 <hr> </hr>
 
