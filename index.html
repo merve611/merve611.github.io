@@ -502,10 +502,431 @@ Projem de ilk olarak veri tabanını oluşturmaya başladım. <br> Mysql veri ta
 <hr> </hr>
 
 <h2>9. Gün (30.07.2020)</h2>
+<h4>
+
+<p>Projede hazır Bootstrap kütüphanesini kullanacağım. Bu kütüphane tüm cihazlara uygun tasarımlar yapabilmemizi sağlar.<br> İlk olarak sayfanın admin kısmını oluşturmaya başladım. Admin.php dosyası içinde; </p>
+<xmp>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Staj Takip | Giriş</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/bootstrap.min.js"></script>
+</head>
+
+
+
+</xmp>
+
+
+<p> Head etiketleri içerisinde title etiketi ile sayfaya başlık verdim. Diğer oluşturacağım php dosyalarında da bu başlığı kullanacağım. <br>Sayfa tasarımında kullanacağım css bootstrap ve javascript dosyalarını gösterdim.  
+Daha sonra body kısmına geçtim;
+<xmp>
+<div class="admin-page">
+		<form class="bg-394551" action="login.php" method="post"  id="contact_form">
+
+
+</xmp>
+<p>Admin sayfası için kendime bir div alanı oluşturdum. Onun içerisine de sayfa girişinde kullanıcıdan alınacak bilgiler için bir form oluşturdum ve daha sonra form elemanlarımı eklemeye başladım. <br> Formumun başına bu yazıyı ekledim; </p>
+<xmp>
+
+<legend class="legend-style-1">Lütfen Giriş Yapınız!</legend>
+</xmp>
+<p>Daha sonra e-posta bilgilerini almak için başka bir div ekledim. Placeholder kullanarak kullanıcıya gireceği özellik hakkında bilgi verdim.  <br>E-posta girme zorunluluğu olduğu için required parametresini de ekledim. Bootstrapda metinsel form kontrollerini form-control parametresiyle sağlarız. </p>
+<xmp>
+<div class="form-group"> 
+					<label class="col-md-12 control-label color-f0">E-Posta</label>
+					<div class="col-md-12 selectContainer">
+						<div class="input-group">
+							<input name="email" placeholder="E-Posta Bilginizi Yazınız!" class="form-control" type="mail" required>
+						</div>
+					</div>
+				</div>
+
+</xmp>
+
+<p> Aynı parametrelere sahip şifre girmesi içinde yeni bir div alanı oluşturdum. Şifre gizli olması nedeni ile placeholder kısmına yıldız koydum.  <br>Bootstrapda formlara yapı oluştururken form-group yöntemini kullandım;</p>
+<xmp>
+<div class="form-group"> 
+					<label class="col-md-12 control-label color-f0">Şifre</label>
+					<div class="col-md-12 selectContainer">
+						<div class="input-group">
+							<input name="pass" placeholder="************" class="form-control" type="password"required>
+						</div>
+					</div>
+				</div>
+
+
+
+</xmp>
+
+
+<p>Kullanıcının bilgileri girdikten sonra giriş sağlaması için GİRİŞ adında bir buton oluşturdum.  </p>
+
+
+<xmp>
+<div class="form-group">
+					<div class="col-md-4" style="float: right;">
+						<button name="login" type="submit" style="float: right;" class="btn btn-success" >Giriş</button>
+					</div>
+
+
+</xmp>
+
+<p> Öğrencilerin staj başvurularına kayıt olması için bir alan daha oluşturdum. Buraya tıkladığında sing-in.php sayfasına yönlendirecektir;</p>
+
+<xmp>
+<div class="col-md-6" style="float: right;">
+						<a href="sign-in.php"><span style="float: right;">Staj Başvurusu Kayıt</span></a>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>
+
+
+</xmp>
+
+
+<p> </p>
+
+
+<p> </p>
+
+</h4>
+<hr> </hr>
+
+<h2>10. Gün (05.07.2020)</h2>
+<h4>
+<p>Bugün admin sayfasından kullanıcının girdiği bilgilere göre yönlendirileceği bir login.php sayfasını oluşturdum. <br>Kullanıcının sağlıklı giriş yapabilmesi için veri tabanıyla bağlantısını sağlamam gerekti. </p>
+
+<xmp>
+<?php
+include("include/config.php");
+
+</xmp>
+<p>Daha sonra session olayını başlattım. Tarayıcı kapatılmadığı sürece kullanıcı bilgileri bu sayede hatırlatıldı.  </p>
+
+<xmp>
+
+
+session_start();
+</xmp>
+
+<p>Post ile girilen e-mail ve şifre bilgisi alındı;  </p>
+<xmp>
+$email = $_POST["email"];
+$password = $_POST["pass"];
+global $db;
+$id = "";
+$user_yetki = "";
+</xmp>
+
+
+
+<p><pre>Tüm Veri Tabanı işlemlerinde (Listeleme, Sorgu, Güncelleme, Veri Ekleme, Veri Silme) PDO kullandım. 
+SELECT * FROM tablo_adi WHERE ...  	=> sorgu, listeleme yapmamızda kullanılmıştır.
+UPDATE tablo_adi SET ...			=> tablo veri güncelleme de kullanılmıştır.
+INSERT INTO tablo_adi(..., ) VALUES              => tabloya veri ekleme işleminde kullanılmıştır.
+
+Pdo ile sorgu işlemleri yapıldı; 
+</pre>
+ </p>
+
+<xmp>$user = $db->prepare("SELECT * FROM kullanicilar WHERE mail = '{$email}' and password = '{$password}'");
+if($user->execute()){
+	$fetch= $user->fetchAll();
+</xmp>
+
+
+<p> Bu kısımda foreach ile sorgudan gelen veriler döngü ile kullanmamız sağlandı;</p>
+
+<xmp>
+foreach($fetch as $val){
+		$id = $val["id"];
+		$user_yetki = $val["yetkilendirme"];   }
+}
+
+
+</xmp>
+
+<p>Veri tabanından veri çekme işlemi yapıldı. Koşullu bir durum olduğu için prepare kullanmayı uygun gördüm. <br>Veri tabanından kullanıcı bilgilerini sorgulayarak, <br>dönen sonuçtan kullanıcının id bilgisini ve yetkilerini alıyor. </p>
+
+<p>Daha sonra head etiketleri içerisinde web sayfası için css dosyalarını ekledim;</p>
+
+<xmp>
+<title>Online Staj Takip | Giriş</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/bootstrap.min.js"></script>
+
+
+
+
+</xmp>
+<p>Veri tabanından girilmiş bilgilere göre kullanıcı olduğu anlaşıldı. Kullanıcının id’si ve kullanıcı yetkisi sessiona gönderildi; </p>
+
+<xmp>
+if ($id != "") {
+	$_SESSION["login"] 	= 	"true"; 
+	$_SESSION["id"]		= 	$id; 
+	$_SESSION["yetki"]	= 	$user_yetki; 
+</xmp>
+<p>Veri tabanından edinilen bilgiler sayesinde veriler kontrol edilerek kullanıcının bilgileri doğruysa “ Giriş Başarılı ” mesajı verdim ve home.php sayfasına yönlendirdim.<br> Eğer bilgiler yanlış girilmiş ise else kullanarak tekrar admin.php sayfasına yönlendirilmesini sağladım. </p>
+
+
+
+<xmp>
+echo '
+		<div class="login-page">
+			<span>Kullanıcı Bulunamadı! Lütfen Bilgilerinizi Doğru Giriniz..</span>
+			<meta http-equiv="refresh" content="3;url=admin.php" />
+		</div>
+</xmp>
+<p></p>
+
+
+
+<xmp></xmp>
+<p></p>
+
+
+
+<xmp></xmp>
+<p></p>
+
+
+
+
+
+</h4>
+<hr> </hr>
+
+<h2>11. Gün (06.07.2020)</h2>
+
+<h4>
+
+
+<p>Bugün admin ve öğrenci kullanıcılarının sayfaya girişleri başarılı olduğunda yönlendirilecekleri home sayfalarını oluşturmaya başladım. <br>İlk olarak adminin home sayfasından başladım. <br>Admin için Home Page de Staj başvurularını açıp kapatabilme onaylı onaysız başvuru sayısı ve son 5 başvuru gözükmektedir. </p>
+<xmp>
+if(isset($_SESSION["login"])){
+	if ($_SESSION["login"] == "true" && $_SESSION["yetki"] == 2){
+
+
+</xmp>
+
+<p>İsset() fonksiyonu ile birlikte login için bir post var mı yani login işlemi yapıldımı diye kontrol ettim.<br> Eğer var ise bunun yetkisini kontrol ederek admin olduğunu anlayacaktır. <br>Daha sonra adminin home’ı için tekrar css-bootstrap dosyalarını ekledim ve sayfanın div kısımlarını yazmaya başladım. <br>Sayfanın sol kısmında yer alacak Anasayfa, Staj başvuruları vb. menüleri oluşturdum;</p>
+<xmp>
+<div class="index-page-left">
+			<ul>
+                                                                          <a href="home.php" class="active"><li>Anasayfa</li></a>
+					<a href="staj_basvurulari.php"><li>Staj Başvuruları</li></a>
+						<a href="proje_olustur.php"><li>Proje Oluştur</li></a>
+						<a href="projeler.php"><li>Projeler</li></a>
+						<a href="stajerler.php"><li>Stajerler</li></a>
+			</ul>
+</div>
+
+
+</xmp>
+
+
+
+
+<p>Sayfanın sağ ana kısmına da Staj Başvuru Analizi, Staj Başvuru durumunun açılıp kapatılabileceği bir buton,<br> Staj Başvuru Sayısını görebileceğimiz bir sayaç ve Son 5 staj başvurusunun göründüğü bir div ekledim. <br>
+Staj Başvuru Durumunu gösteren butonun açık yada kapalı olduğunu test eden status değişkeni ile birlikte bir if-else yapısı kullandım;
+</p>
+<xmp>
+<label>Staj Başvuru Durumu</label>
+<?php
+					$data = $db->prepare("SELECT Top 1 status FROM staj_durumu");
+									$result = $data->fetch();
+									$status = $result[0];
+									 if($status == 1){
+echo '<button name="staj_basvuru_off" type="submit" class="btn btn-success">AÇIK</button>';}
+									else if($status == 0){
+echo '<button name="staj_basvuru_on" type="submit" class="btn btn-danger">KAPALI</button>';
+									} ?>
+
+</xmp>
+
+
+<p>Bu üç div alanından sonra son 5 staj başvurusunu gösteren ve öğrencilerin bilgilerini içeren bir tablo oluşturdum.<br> Öğrencilerin TC kimlik, adı soyadı, e-posta, sınıfı, projesi ve durumu bilgilerini içeren bir tablodur. <br>Bu bilgileri veri tabanından çekmesi için yine login.php de kullandığım yapıyı yazdım. <br>
+Durumu için ise stajının onaylanıp onaylanmaması bilgisini içermektedir;
+</p>
+
+
+
+<xmp>
+if($val["yetkilendirme"] == 0){
+															echo '<td class="btn-warning">ONAYLANMAMIŞ</td>';
+														} else if($val["yetkilendirme"] == 1){
+															echo '<td class="btn-success">ONAYLI</td>';
+														} else{
+															echo '<td style="color: gold;">BİLİNMEYEN</td>';
+														}
+
+</xmp>
+<p></p>
+
+
+<xmp></xmp>
+<p></p>
+
+
+
+<xmp></xmp>
+<p></p>
+
+
+<xmp></xmp>
+<p></p>
+
+
+
+<xmp></xmp>
+<p></p>
+
+
+
+
+
+
+
+
+</h4>
 
 <hr> </hr>
 
-<h2>10. Gün (31.07.2020)</h2>
+<h2>12. Gün (07.07.2020)</h2>
+<h4>
+
+<p>Bir önceki gün admin giriş yaptıktan sonra yönlendirileceği ana sayfasını yazdım.<br> Bugün ise öğrenci için bir ana sayfa oluşturacağım. Öğrenci Home Page’de  Üyelik bilgileri ve proje bilgileri görünür. Herhangi bir işlem yapılmaz.<br> Kullanıcının öğrenci olduğunu anlaması için else if içine;</p>
+
+
+<xmp>else if ($_SESSION["login"] == "true" && $_SESSION["yetki"] == 1)</xmp>
+<p>Tekrardan css dosyalarını ekledim. Sayfanın sağ kısmı için ana sayfa ve staj defterim olarak menü ekledim.<br> Sayfanın sağ kısmına ise üye bilgilerim ve proje bilgilerim adında iki tane form oluşturdum. </p>
+
+
+
+<xmp><legend class="legend-style-1 legend-style-1"> ÜYE BİLGİLERİM</legend></xmp>
+<p>Üye bilgilerim içine tc kimlik numarası, ad & soyadı, E-posta, Şifre, Sınıf, Proje, Proje Önerisi ve Daha önce yapılan projeler hakkında <br>bilgiler içeren alanları ekledim. Bunlardan birkaçını örnek olarak belirteyim; </p>
+
+
+<xmp>
+
+<div class="row">
+<div class="form-group col-md-6">	
+</xmp>
+
+<p>Tc kimlik Numarası için;	</p>
+<xmp>
+<label class="col-md-12 control-label color-f0">TC Kimlik Numarası</label>				               
+<div class="col-md-12 selectContainer">
+			<div class="input-group">								
+<input class="form-control" type="text" value="<?php echo $val['tc_no']; ?>" disabled>					
+</div>											
+</div>											
+</div>	
+															</div>	
+</xmp>
+
+
+<p>Ad & Soyadı için;</p>
+<xmp>
+<div class="form-group col-md-6">									
+  <label class="col-md-12 control-label color-f0">Ad & Soyad</label>				             
+  <div class="col-md-12 selectContainer">
+  <div class="input-group">							
+<input class="form-control" type="text" value="<?php echo $val['name']; ?>" disabled>
+	</div></div></div>	
+
+
+</xmp>
+
+
+<p></p>
+<xmp></xmp>
+
+
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+
+<p></p>
+<xmp></xmp>
+<p></p>
+<hr> </hr>
+</h4>
+
+
+<h2>13. Gün (10.07.2020)</h2>
+<h4>
+
+<p>Proje alanına admin tarafından proje atanmış ise onun atadığı proje gözükecektir. <br>Proje atanmamışsa bunu da belirten bir kod yazdım;</p>
+<xmp>
+if($val['proje_id'] == 0){
+echo '<input class="form-control" type="text"  value="Proje Atanmamış" disabled>';
+} else{
+echo '<input class="form-control" type="text"  value="'.$val["proje"].'" disabled>';
+
+
+</xmp>
+<p>
+Üye bilgilerimi tamamladıktan sonra Proje bilgilerim formunu doldurmaya başladım. Proje Adı, Proje Konusu ve Projenin içeriği bilgilerini kapsamaktadır.<br> Burada da aynı üye bilgilerimi oluştururken kullandığım yapı vardır. <br>Burada daha çok uzun metinler bulunacağı için textarea etiketini ekledim; 
+
+</p>
+<xmp>
+<div class="row">											
+  <div class="form-group col-md-12"> 
+		<label class="col-md-12 control-label color-f0">Projenin Adı</label>						
+                   <div class="col-md-12 selectContainer">						                  	
+                   <div class="input-group">
+				<input class="form-control" type="text" value="<?php echo $val["proje_adi"]; ?>" disabled>												
+</div>	</div>													
+	</div>			
+	<div class="form-group col-md-12">									
+            <label class="col-md-12 control-label color-f0">Projenin Konusu</label>				
+            <div class="col-md-12 selectContainer">	
+			<div class="input-group">										
+                               <textarea class="form-control" disabled><?php echo $val["proje_konusu"]; ?></textarea>	
+			</div></div></div>									
+
+
+
+
+
+
+
+
+
+</xmp>
+
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+
+
+
+
+</h4>
+<hr> </hr>
+
+<h2>14. Gün (11.07.2020)</h2>
+
+<hr> </hr>
+
+<h2>15. Gün (12.07.2020)</h2>
+
+<hr> </hr>
+
+<h2>16. Gün (13.07.2020)</h2>
 
 
 
