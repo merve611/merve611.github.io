@@ -485,7 +485,7 @@ Projem de ilk olarak veri tabanını oluşturmaya başladım. <br> Mysql veri ta
 </h4>
 <hr> </hr>
 
-<h2>9. Gün (30.07.2020)</h2>
+<h2>9. Gün (04.08.2020)</h2>
 <h4>
 
 <p>Projede hazır Bootstrap kütüphanesini kullanacağım. Bu kütüphane tüm cihazlara uygun tasarımlar yapabilmemizi sağlar.<br> İlk olarak sayfanın admin kısmını oluşturmaya başladım. Admin.php dosyası içinde; </p>
@@ -584,7 +584,7 @@ Daha sonra body kısmına geçtim;
 </h4>
 <hr> </hr>
 
-<h2>10. Gün (05.07.2020)</h2>
+<h2>10. Gün (05.08.2020)</h2>
 <h4>
 <p>Bugün admin sayfasından kullanıcının girdiği bilgilere göre yönlendirileceği bir login.php sayfasını oluşturdum. <br>Kullanıcının sağlıklı giriş yapabilmesi için veri tabanıyla bağlantısını sağlamam gerekti. </p>
 
@@ -690,7 +690,7 @@ echo '
 </h4>
 <hr> </hr>
 
-<h2>11. Gün (06.07.2020)</h2>
+<h2>11. Gün (06.08.2020)</h2>
 
 <h4>
 
@@ -786,7 +786,7 @@ if($val["yetkilendirme"] == 0){
 
 <hr> </hr>
 
-<h2>12. Gün (07.07.2020)</h2>
+<h2>12. Gün (07.08.2020)</h2>
 <h4>
 
 <p>Bir önceki gün admin giriş yaptıktan sonra yönlendirileceği ana sayfasını yazdım.<br> Bugün ise öğrenci için bir ana sayfa oluşturacağım. Öğrenci Home Page’de  Üyelik bilgileri ve proje bilgileri görünür. Herhangi bir işlem yapılmaz.<br> Kullanıcının öğrenci olduğunu anlaması için else if içine;</p>
@@ -849,7 +849,7 @@ if($val["yetkilendirme"] == 0){
 </h4>
 
 
-<h2>13. Gün (10.07.2020)</h2>
+<h2>13. Gün (10.08.2020)</h2>
 <h4>
 
 <p>Proje alanına admin tarafından proje atanmış ise onun atadığı proje gözükecektir. <br>Proje atanmamışsa bunu da belirten bir kod yazdım;</p>
@@ -902,15 +902,762 @@ echo '<input class="form-control" type="text"  value="'.$val["proje"].'" disable
 </h4>
 <hr> </hr>
 
-<h2>14. Gün (11.07.2020)</h2>
+<h2>14. Gün (11.08.2020)</h2>
+<h4>
+<p>Bugün admin sayfasında bulunan Staj başvurularının bulunacağı sayfayı oluşturdum.<br> Tüm staj başvuruları listelenmiş olup başvuru onaylama, onay kaldırma, başvuru düzenleme, proje atama gibi işlemler bu sayfada yapılacaktır. <br>Kullanıcın yetki durumunu test ederek başladım; </p>
+<xmp>if(isset($_SESSION["login"])){
+	if ($_SESSION["login"] == "true" && $_SESSION["yetki"] == 2){
+</xmp>
+<p>Sayfa görünümü için tekrar css, bootsrap dosyalarını ekledim;</p>
+<xmp>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+</xmp>
+<p>Diğer sayfalarda da bulunun çıkış için gitmesi gereken dosyayı ekleyerek devam ettim; </p>
+<xmp>
+
+	<a href="exit.php"><span class="span-style-1">X</span></a></xmp>
+<p>Bu kısımda sayfanın adres çubuğu url dosyasında yer alan değişkeni kullandım. Sayfadan çıkış yeri ve baş kısma ne yazacağını tamamladım. </p>
+<xmp>
+	<span class="span-style-2"><?php echo $user_name; ?></span>
+	<span class="span-style-3">ONLİNE STAJ TAKİP</span>
+</xmp>
+<p>Üst kısmı tamamladıktan sonra sayfanın soluna oluşturacağım menüyü yazdım. Staj başvuruları menüsünde bulunduğum için onu aktif ettim; </p>
+<xmp>	<a href="home.php"><li>Anasayfa</li></a>
+	<a href="staj_basvurulari.php" class="active"><li>Staj Başvuruları</li></a>
+	<a href="proje_olustur.php"><li>Proje Oluştur</li></a>
+	<a href="projeler.php"><li>Projeler</li></a>
+	<a href="stajerler.php"><li>Stajerler</li></a>
+</xmp>
+<p>Daha sonra sayfanın sağ kısmında yer alacak  Staj başvurularının bulunduğu tabloyu oluşturdum. <br>Tabloda tc no, ad-soyad, e-posta, sınıfı, projesi ve düzenleme gibi bilgiler vardır. Bu bilgileri veri tabanından çekerek tablo oluşturuluyor; </p>
+<xmp>$user = $db->prepare("SELECT * FROM kullanicilar ORDER BY id DESC");
+if($user->execute()){										
+	$fetch= $user->fetchAll(									
+	foreach($fetch as $val){ 											
+	if($val["yetkilendirme"] != 2){ ?>
+		<th scope="row"><?php echo $key; ?></th>
+                <td><?php echo $val["tc_no"]; ?></td>								
+		<td><?php echo $val["name"]; ?></td>				
+                <td><?php echo $val["mail"]; ?></td>
+		<td><?php echo $val["class"]; ?></td>
+		<td><?php echo $val["proje"]; ?></td><td>
+					<tr>
+</xmp>
+<br> <img src="merve611.github.io\staj_resimler\staj_basvuru_listesi.jpg"  alt ="merve" width ="1300" height = "400"/>
+
+<p></p>
+<xmp></xmp>
+
+<p></p>
+<xmp></xmp>
+
+
+
+
+</h4>
+
 
 <hr> </hr>
 
-<h2>15. Gün (12.07.2020)</h2>
+<h2>15. Gün (12.08.2020)</h2>
+<h4>
+<p>Düzenleme kısmına projenin onaylanması veya editlenmesi için form oluşturdum.<br> Form içine yapılan staj başvurusunu onaylaması için Onayla adlı bir buton yerleştirdim. Butona tıklandığında butona Onaylı yazacaktır. </p>
+<xmp><form name="staj_onay" action="edit.php" method="post" class="form_onay">
+<?php
+	if($val["yetkilendirme"] == 0){
+		echo '													
+		<input type="hidden" value="'.$val["id"].'" name="uye_id" />
+		<button name="onay" type="submit" class="btn btn-warning">							
+		Onayla </button>';		}			
+	if($val["yetkilendirme"] == 1){
+		echo '													
+		<button type="submit" class="btn btn-success"  disabled> Onaylı </button>'; 	
+		} echo '
+</xmp>
+
+<p>Onayla butonunun hemen yanına projelerin düzenlenmesi için edit adında bir buton daha oluşturdum. </p>
+<xmp>
+	<form name="staj_edit" action="edit.php" method="post" class="form_edit">
+																
+		<input type="hidden" value="'.$val["id"].'" name="uye_id" />
+																
+		<button name="edit" class="btn btn-primary"> Edit </button>';
+
+</xmp>
+<p>Butonları oluştururken kullandığım btn-primary ve btn-success yapıları bootstraptan aldığım ve orda kullanılan buton stillendirmeleridir. <br>
+Eğer kullanıcının yetkisi yetersiz ise;
+</p>
+<xmp>else if ($_SESSION["login"] == "true" && $_SESSION["yetki"] == 1){       </xmp>
+
+<p>içine kullanıcıyı uyaran bir mesaj bıraktım. 	</p>
+<xmp>
+<div class="login-page"><span>	
+		Bu Sayfa İçin Yetkiniz Yeterli Değildir! </span>				
+			<meta http-equiv="refresh" content="3;url=admin.php" />			
+				</div>
+
+</xmp>
+<p>Uyarıdan sonra kullanıcıyı tekrar admin sayfasına yönlendirir.</p>
+<xmp></xmp>
+
+<p></p>
+<xmp></xmp>
+
+
+
+</h4>
+
+
+
+
 
 <hr> </hr>
 
-<h2>16. Gün (13.07.2020)</h2>
+<h2>16. Gün (13.08.2020)</h2>
+<h4>
+
+<p>Bugün staj başvurularında bulunan öğrencilere şifre oluşturulması, <br>onaylandığı için sql tablosunda öğrenci için güncelleme ve oluşturulan şifrenin öğrencinin mailine yollanıp sisteme girmesini sağlamak için student_onay.php adında bir dosya oluşturdum.<br>Bu sistemi oluşturmak için PHPMailer kullandım. İlk olarak onay parametresi post edilince şifre oluştururken kullanılacak dizileri oluşturdum;</p>
+<xmp>
+$chars = "abcdefghijKLMNOPRSTuvwxyzABCDEFGHIJklmnoprstUVWXYZ"; 
+$numbers = "1234567890";	
+$shapes = "-.()%+&!*/";		
+$sifre = "";
+
+</xmp>
+<p>Chars dizisini ingilizce karakterler için, numbers sayılar için, shapes özel şekiller için oluşturdum.Daha sonra for döngüsü açarak rand fonksiyonuyla rastgele karakterleri seçtim ve şifre değişkeninin içine attım; </p>
+<xmp>
+for ($i=0; $i < 7; $i++) { 
+		$sifre .= $chars{rand() % 50}; 
+		if ($i == 2 || $i == 4) {
+			$sifre .= $numbers{rand() % 10};}
+		if ($i == 1 || $i == 5) {
+			$sifre .= $shapes{rand() % 10};}}
+
+</xmp>
+<p>Bu işlemlerden sonra staj onay güncellemesi için sorgu yapısı oluşturdum. Öğrencinin mail değerini olmak için. Daha sonra bilgileri güncelledim;</p>
+<xmp>
+$user_mail = "";
+	$user_id = $_POST['uye_id'];
+	$user = $db->prepare("SELECT * FROM kullanicilar WHERE id = $user_id");
+	if($user->execute()){
+		$fetch= $user->fetchAll();
+		foreach($fetch as $val){
+			$user_mail = $val["mail"];}}
+	$data = ['yetki' => 1, 'sifre' => $sifre, 'id' => $user_id ];
+	$sql = "UPDATE kullanicilar SET yetkilendirme=:yetki, password=:sifre WHERE id=:id";
+	$user = $db->prepare($sql)->execute($data);
+
+</xmp>
+
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+</h4>
+
+<hr> </hr>
+
+<h2>17. Gün (14.08.2020)</h2>
+<h4>
+<p>Bugün öğrenci onaylamasında oluşturulan şifrenin öğrencinin mailine gönderilmesi üzerinde çalıştım.<br> Bu işlem için PHPMailer kullandım. İlk olarak PHPMailer classından yeni bir nesne üretildi ve mail değişkenine attım;</p>
+<xmp>
+$mail = new PHPMailer();	
+$mail->IsSMTP();	
+
+</xmp>
+<p>Hata ayıklama değişkeni 1 ise hata ve mesajı gösterecek, 2 ise mesajı gösterecek;</p>
+<xmp>$mail->SMTPDebug = 1;</xmp>
+<p>SMTP doğru olmalı ve bu değeri değişmemelidir;</p>
+<xmp>
+$mail->SMTPKeepAlive = true;
+                                                                                                            
+$mail->SMTPAuth = true;
+
+</xmp>
+<p>Güvenli bağlantı için ssl  yazdım; </p>
+<xmp>$mail->SMTPSecure = 'ssl';</xmp>
+<p>Güvenli bağlantı için porta 465 yazdım; </p>
+<xmp>$mail->Port = 465;</xmp>
+<p>Öğrenciye mail gönderen gönderici adresinin e-posta adresini ve şifresini belirttim;</p>
+<xmp>
+$mail->Username = "stajodevi61@gmail.com"; 
+$mail->Password = "qawsed61";
+
+</xmp>
+<p>Mail iletildiğinde görünecek ismi belirledim; </p>
+<xmp>
+$mail->SetFrom("stajodevi61@gmail.com", "Staj Onayı");
+</xmp>
+<p>User_name değişkenine atanan alıcı adres için; </p>
+<xmp>$mail->AddAddress($user_mail, "Staj Onay Şifreniz");</xmp>
+<p>Gönderilen mailin konu başlığını ve şifresini belirttim;</p>
+<xmp>
+$mail->Subject = "E-Staj Öğrenci Arayüz Şifresi"; 
+$mail->Body = "Şifreniz : ".$sifre;
+
+</xmp>
+<p>Öğrenciye gönderilen mailde gönderim hatasında olduğunda;</p>
+<xmp>
+if(!$mail->Send()){
+		echo "Email Gönderim Hatasi: ".$mail->ErrorInfo;
+	} else {   echo "Email Gonderildi";}
+		echo '<meta http-equiv="refresh" content="0;url=staj_basvurulari.php" />';
+
+</xmp>
+<p>Örnek mail;</p>
+<br> <img src="merve611.github.io\staj_resimler\mail.jpg"  alt ="merve" width ="500" height = "200"/>
+<p></p>
+<xmp></xmp>
+
+
+</h4>
+<hr> </hr>
+
+<h2>18. Gün (17.08.2020)</h2>
+
+<h4>
+<p>Bugün staj başvuruları listesinde bulunan öğrencilerin bilgilerinin düzenlenmesi için student_edit.php adında bir dosya oluşturdum. <br>Düzenleme ve güncelleme işlemleri için parametreleri kontrol ettim;</p>
+<xmp>
+if(isset($_SESSION["login"])){
+	if ($_SESSION["login"] == "true" && $_SESSION["yetki"] == 2){
+		if(isset($_POST["onay_kaldir"]) || isset($_POST["uye_guncelle"]) || isset($_POST["edit"])){
+
+</xmp>
+<p>Sol kısma diğer sayfalarda olduğu gibi menü listesini oluşturdum ve staj başvuruları kısmını aktif ettim. Veri tabanından kullanıcı id sini sorguladım;</p>
+<xmp>
+<?php $user = $db->prepare("SELECT * FROM kullanicilar WHERE id = '{$id}'");
+								if($user->execute()){
+									$fetch= $user->fetchAll();
+									foreach($fetch as $val){ ?>
+
+</xmp>
+<p>Öğrencinin onaylanıp onaylanmamasına göre oluşturacağım formun başlığını yazdım;</p>
+<xmp>
+<?php if($val["yetkilendirme"] == 1){ 
+	echo '<legend class="legend-style-1"> ONAYLI ÜYE BİLGİSİ DÜZENLEME</legend>'; }
+     else if($val["yetkilendirme"] == 0){
+	echo '<legend class="legend-style-1 legend-style-2"> ONAYLANMAMIŞ ÜYE BİLGİSİ DÜZENLEME</legend>'; } ?>
+</xmp>
+<p>Form elemanlarımı eklemeye başladım. Bu form Tc kimlik numarası, ad & soyadı, e-posta, şifre, sınıf, proje, proje önerisi ve daha önce yapılan projelerin bilgisini içerir. 
+<br>TC Kimlik numarası için; 
+</p>
+<xmp>
+<label class="col-md-12 control-label color-f0">TC Kimlik Numarası</label>
+	<div class="col-md-12 selectContainer">								
+		<div class="input-group">					
+		<input name="uye_id" type="hidden" value="<?php echo $val['id']; ?>">			
+		<input name="tc" class="form-control" type="text" value="<?php echo $val['tc_no']; ?>" disabled>
+
+</xmp>
+<p>Ad & Soyadı için;</p>
+<xmp>
+<label class="col-md-12 control-label color-f0">Ad & Soyad</label>
+		<div class="col-md-12 selectContainer">								
+		<div class="input-group">				
+		<input name="name" class="form-control" type="text" value="<?php echo $val['name']; ?>" disabled>	
+</xmp>
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+
+<hr> </hr>
+
+</h4>
+<h2>19. Gün (18.08.2020)</h2>
+
+<h4>
+<p>Bugün üye bilgilerini düzenlemek için oluşturduğum student_edit.php dosyasına diğer form elemanlarını ekledim. 
+<br>E-posta için; 
+</p>
+<xmp>
+<label class="col-md-12 control-label color-f0">E-Posta</label>
+		<div class="col-md-12 selectContainer">								
+		<div class="input-group">
+		  <input name="mail" class="form-control" type="mail"  value="<?php echo $val['mail']; ?>">		
+
+</xmp>
+<p>Bu şekilde tc kimlik numarası, ad & soyad ve e-posta elemanlarını ekledim. Bu elemanlar oluştururken aldığı value değerlerine göre ekrana yansıtılacaktır. <br>
+“Sınıf” elemanını oluştururken option etiketini kullandım. 1,2,3,4 ve 4+ değerlerinde herhangi biri seçilebilir;
+</p>
+<xmp>
+<select name="class_no" class="form-control">
+	<option value="<?php echo $val['class']; ?>"><?php echo $val['class']; ?></option>		
+	<option value="1">1</option>								
+        <option value="2">2</option>	
+        <option value="3">3</option>			
+	<option value="4">4</option>									
+	<option value="4+">4+</option>	</select> 	
+
+</xmp>
+<br> <img src="merve611.github.io\staj_resimler\onayli_uye_bilgisi_sinif.jpg"  alt ="merve" width ="430" height = "230"/>
+<p>“Proje” elemanını da aynı şekilde option etiyle oluşturdum. Proje value de herhangi bi değer yok ise “Proje atanmamış” olarak ekrana yansıtılır. <br>Eğer atanmış ise proje id değerini alıp seçenekler arasına ekler. </p>
+<br> <img src="merve611.github.io\staj_resimler\proje_atama.jpg"  alt ="merve" width ="430" height = "230"/>
+
+<xmp></xmp>
+<p></p>
+
+
+
+
+</h4>
+<hr> </hr>
+
+<h2>20. Gün (19.08.2020)</h2>
+<h4>
+<p>Bugün düzenleme sayfası için güncelleme ve onay kaldırmak için butonları oluşturdum. Diğer son iki tane kalan form elemanlarımı ekledim.
+Proje Önerisi;
+</p>
+<xmp>
+<label class="col-md-12 control-label color-f0">Proje Önerisi</label>
+            <div class="col-md-12 selectContainer">							         
+		<div class="input-group">					
+		<textarea name="proje_onerisi" class="form-control"><?php echo $val['proje_onerisi']; ?></textarea>	
+
+</xmp>
+<p>Daha önce yapılan projeler; </p>
+<xmp>
+<label class="col-md-12 control-label color-f0">Daha Önce Yapılan Projeler</label>
+      <div class="col-md-12 selectContainer">								
+	<div class="input-group">				
+		<textarea name="yer_aldigi_projeler" class="form-control"><?php echo $val['yer_aldigi_projeler']; ?></textarea>	
+</xmp>
+<p>Bu işlemler namelerin value değerleri çekilerek yapılır.
+Formun bütün elemanlarını ekledikten sonra sol kısma “onay kaldır” butonunu, sağ kısma da “Güncelle” butonunu ekledi.<br> Son olarak staj başvuru listesinin bulunduğu sayfaya dönmesi için de “Geri” butonunu ekledim;
+</p>
+<xmp>
+<div class="form-group col-md-12">
+	<div class="col-md-12" style="float: right; padding-right: 0;">					
+		<button name="onay_kaldir" type="submit" style="float: left; margin-left: -15px" class="btn btn-warning" >Onayı Kaldır</button>			
+		<button name="uye_guncelle" type="submit" style="float: right; " class="btn btn-success" >Güncelle</button>
+		<a href="staj_basvurulari.php" style="float: right; margin-right: 15px;" class="btn btn-primary" >Geri</a>		</div>		
+
+</xmp>
+<br> <img src="merve611.github.io\staj_resimler\onayli_uye_bilgisi_duzenleme.jpg"  alt ="merve" width ="700" height = "500"/>
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+
+
+
+
+
+
+</h4>
+<hr> </hr>
+
+<h2>16. Gün (21.08.2020)</h2>
+<h4>
+<p>Bugün adminin öğrencilere proje ataması yapabilmesi için proje_oluştur.php adında yeni bir sayfa oluşturmaya başladım.<br> Burada Post ile formdan çekilen veriler ile veri tabanındaki kullanıcı varmı yokmu doğrulaması yapılır.<br>
+Kullanıcı varsa admin mi öğrenci mi olduğuna bakılır. Kullanıcı girişi true değilse veya herhangi bir yetki sorunu varsa status.php ile kontrol ediyor. <br>Adres çubuğundaki adrese göre yapılacak olan veri tabanı işlemlerini url.php sayfası ile yapıyor. 
+</p>
+<xmp>
+include("include/config.php");
+global $db;
+include ("include/status.php");
+if(isset($_SESSION["login"])){
+	if ($_SESSION["login"] == "true" && $_SESSION["yetki"] == 2){
+		include ("include/url.php"); ?>		
+</xmp>
+<p>Sayfanın sol kısmına tekrar menü kısmını yerleştirdim ve proje oluşturma kısmını aktif ettim;</p>
+<xmp>
+<ul>
+	<a href="home.php"><li>Anasayfa</li></a>
+	<a href="staj_basvurulari.php"><li>Staj Başvuruları</li></a>
+	<a href="proje_olustur.php" class="active"><li>Proje Oluştur</li></a>
+	<a href="projeler.php"><li>Projeler</li></a>
+	<a href="stajerler.php"><li>Stajerler</li></a>
+</ul>	
+</xmp>
+<p>
+Sayfanın sağ kısmına Yeni Proje Oluştur başlığıyla bir form oluşturdum. <br>Bu form yeni proje oluşturmaya yarayan projenin adını, konusunu ve içeriğini barındıran bir formdur. <br>	
+Bootstrapda iskelet kısmını oluştururken kullanılan <div class="row"> etiketini tanımlayarak başladım. <br>Form elemanlarını yazmaya başladım ilk olarak Projenin Adının girilmesi için alan oluşturdum; 
+
+</p>
+<xmp>
+	<div class="form-group col-md-6"> 
+		<label class="col-md-12 control-label color-f0">Projenin Adı</label>
+		<div class="col-md-12 selectContainer">
+			<div class="input-group">
+	<input name="proje_adi" class="form-control" type="text" required>
+		</div></div></div>
+</xmp>
+<p></p>
+<xmp></xmp>
+
+
+
+
+</h4>
+<hr> </hr>
+
+<h2>22. Gün (21.08.2020)</h2>
+<h4>
+
+<p>Bugün diğer form elemanlarını ekledim. Projenin konusun girileceği alanı oluşturdum;</p>
+<xmp>
+<div class="form-group col-md-6"> 
+	<label class="col-md-12 control-label color-f0">Projenin Konusu</label>
+		<div class="col-md-12 selectContainer">
+		<div class="input-group">
+	<textarea name="proje_konusu" class="form-control" required></textarea>
+</div></div></div>
+
+</xmp>
+<p>Son olarak projenin içeriği alanını da ekledim;</p>
+<xmp>
+<div class="form-group col-md-12"> 
+	<label class="col-md-12 control-label color-f0">Projenin İçeriği</label>
+	<div class="col-md-12 selectContainer">
+			<div class="input-group">
+			<textarea name="proje_icerigi" class="form-control" required></textarea></div></div></div>
+
+</xmp>
+<p>Projenin belirtilen özelliklerini tamamladıktan sonra Oluştur adında bir buton ekledim.<br> Bu butona tıklandığında proje kaydedilecek ve kullanıcı projeler kısmına yönlendirilecek.</p>
+<xmp>
+<div class="form-group col-md-12">
+	<div class="col-md-12" style="float: right;">
+	<button name="proje_olustur" type="submit" style="float: right;" class="btn btn-success" >Oluştur</button>
+
+</xmp>
+<p>
+Butonu oluştururken yine Bootstrap’ın özelliklerinden yararlandım.
+ <br>Baştaki if yapısına girmemesi durumunda else-if yapısı kullandım. <br>Kullanıcının yetkisi yetersin olduğunda else-if e girerek kullanıcıya ‘bu sayfa için yetkiniz yetersizdir’ mesajı vererek uyaracaktır ve admin.php sayfasına yönlendirilecektir; 
+
+</p>
+<xmp>
+<div class="login-page">
+	<span>	Bu Sayfa İçin Yetkiniz Yeterli Değildir!</span>
+	<meta http-equiv="refresh" content="3;url=admin.php" />
+				</div>
+
+</xmp>
+
+<br> <img src="merve611.github.io\staj_resimler\proje_olustur.jpg"  alt ="merve" width ="800" height = "350"/>
+<p></p>
+<xmp></xmp>
+
+
+</h4>
+<hr> </hr>
+
+<h2>23. Gün (24.08.2020)</h2>
+<h4>
+
+<p>
+Bugün proje ve özelliklerinin bulunacağı projeler.php sayfasını oluşturdum. Diğer sayfalarda olduğu gibi burada da yetki sorgulaması yaptım.<br> Yetki yeterli olduğunda projeler gözükecektir. 
+<br>Sayfanın üst kısmına tekrar çıkış yeri, kullanıcı adının gözükeceği kısmı ve başlık ekledim.
+
+</p>
+<br> <img src="merve611.github.io\staj_resimler\bas_kisim.jpg"  alt ="merve" width ="1100" height = "50"/>
+<xmp></xmp>
+<p>Sayfanın sol kısmına diğer admin için olan sayfalarda olduğu gibi menüleri ekledim.</p>
+<br> <img src="merve611.github.io\staj_resimler\sol_menu.jpg"  alt ="merve" width ="200" height = "400"/>
+<xmp></xmp>
+<p>Bu kısımların kodlarını diğer sayfalarda belirttiğim için tekrar yazmadım. <br>Sayfanın sağ kısmına projelerin bulunduğu Proje Listesi başlığı altında bir tablo oluşturdum. Tablo oluştururken tekrar bootstrap özelliklerinden yararlandım.<br> Tablo içinde projenin adı, konusu, amacı ve proje düzenleme kısmı vardır;</p>
+<xmp>
+<table class="table table-response table-striped table-bordered">
+	<thead class="thead-dark">
+	<tr>
+	             <th scope="col">#</th>
+	             <th scope="col">Adı</th>
+	             <th scope="col">Konusu</th>
+	             <th scope="col">Amacı</th>
+		<th scope="col">Düzenleme</th>
+	</tr></thead>
+
+</xmp>
+<p>Veri tabanında bulunan bu bilgileri çekerek tabloda geçirdim;</p>
+<xmp>$user = $db->prepare("SELECT * FROM projeler");
+       if($user->execute()){
+               $fetch= $user->fetchAll();
+                foreach($fetch as $val){ ?>
+             <tr>    <th scope="row"><?php echo $key; ?></th>					
+                        <td><?php echo $val["proje_adi"]; ?></td>
+                         <td><?php echo $val["proje_konusu"]; ?></td>
+                         <td><?php echo $val["proje_icerigi"]; ?></td>
+	         <td>
+</xmp>
+<p>Projeleri silmek ve düzenlemek bir form oluşturdum. Form elemanları sil ve edit;</p>
+<xmp>
+<form action="proje_edit.php" method="post">
+     <div class="form_onay">			
+              <input type="hidden" value="<?php echo $val["id"]; ?>" name="proje_id" />		
+              <button name="proje_sil" type="submit" class="btn btn-danger" disabled> Sil </button>	</div>
+      <div class="form_onay">		
+             <input type="hidden" value="<?php echo $val["id"]; ?>" name="proje_id" />		
+            <button name="proje_edit" class="btn btn-primary"> Edit </button>					</div>	</form>	
+</xmp>
+<p>Proje düzenleme kısmına tıklandığında proje_edit.php sayfasına yönlendirilecektir. Proje düzenleme sayfasını güncelleme amaçlı oluşturacağım.<br> Proje id sini alarak seçeceği işleme göre projeyi silecek ya da düzenleyecek.	</p>
+<br> <img src="merve611.github.io\staj_resimler\proje_listesi.jpg"  alt ="merve" width ="1400" height = "350"/>
+
+<xmp></xmp>
+<p>Bu işlemleri eğer kullanıcı yetkisi yeterli olduğunda gerçekleştirebilecektir. Yetki yetersiz ise kullanıcıya uyarı mesajı gönderecektir.</p>
+<xmp></xmp>
+
+</h4>
+<hr> </hr>
+
+<h2>24. Gün (25.08.2020)</h2>
+<h4>
+
+<p>Bugün, bir öndeki gün oluşturduğum projeler sayfasında proje düzenleme butonuna tıklandığında yönlendirilecek olan proje_edit.php sayfasını oluşturacağım.<br> Bu sayfada projenin adını, konusunu içeriğini değiştirip güncellenebiliyor. <br>
+Burada da tekrar kullanıcı yetkisini kontrol ettim. Gerekli css, bootstrap dosyalarını ekledim. Sayfanın sol kısmına menüleri tekrar ekledim ve projeler menüsünü aktif ettim. <br>
+Sayfanın sağ kısmına projeyi düzenlemek için form oluşturdum. Veri tabanında bulunan projeler için sorgu işlemi yapıldı;
+</p>
+<xmp>
+$user = $db->prepare("SELECT * FROM projeler WHERE id = '{$_POST["proje_id"]}'");
+								if($user->execute()){
+									$fetch= $user->fetchAll();
+
+</xmp>
+<p>Form elemanlarını oluşturmayla devam ettim. <br>Proje Düzenleme adında bir başlık tanımladım. Projenin adı için alan oluşturdum;</p>
+<xmp>
+	<div class="form-group col-md-6"> 
+		<label class="col-md-12 control-label color-f0">Projenin Adı</label>			
+	<div class="col-md-12 selectContainer">								
+	<div class="input-group">	
+	<input name="proje_id" class="form-control" type="hidden" value="<?php echo $val["id"]; ?>"
+	<input name="proje_adi" class="form-control" type="text" value="<?php echo $val["proje_adi"]; ?>">
+			</div>	</div>	</div>	
+
+</xmp>
+<p>Daha sonra Projenin konusu için alan oluşturdum;</p>
+<xmp><div class="form-group col-md-6"> 
+	<label class="col-md-12 control-label color-f0">Projenin Konusu</label>			
+                  <div class="col-md-12 selectContainer">								         
+	 <div class="input-group">		
+              <textarea name="proje_konusu" class="form-control"><?php echo $val["proje_konusu"]; ?></textarea>	
+</xmp>
+<p>Aynı şekilde projenin içeriği kısmını da ekledim. Bu işlemlerden sonra formun sol kısmına “GERİ”, sağ kısmına “Güncelle” adında butonlar oluşturdum. <br>Geri butonuyla birlikte kullanıcı  tekrar projeler sayfasına dönebilecek. 	</p>
+<xmp>
+<div class="col-md-12" style="float: right;">
+                       <a href="projeler.php" class="btn btn-primary" style="float: left;">Geri</a>
+                      <button name="proje_guncelle" type="submit" style="float: right;" class="btn btn-success" >Güncelle</button>
+
+</xmp>
+<p>Sayfanın son hali bu şekilde oluştu;</p>
+<br> <img src="merve611.github.io\staj_resimler\proje_edit.jpg"  alt ="merve" width ="1200" height = "450"/>
+
+<xmp></xmp>
+
+
+
+
+
+
+
+
+</h4>
+
+
+<hr> </hr>
+
+<h2>25. Gün (26.08.2020)</h2>
+<h4>
+
+<p>Bugün admin menüsünde yer alan stajyerler alanını oluşturdum.
+Staj bitimi sonrası defterinin tamamlandığını belirten öğrenciler bu sayfada listelenir.<br> Burada her öğrencinin defteri incelenebilir tüm sayfalarına onay verilebilecek. Defter iç sayfalarına onay verildikten sonra tüm defter onaylanabilir ve onaylar geri alınabilir. <br>Onay tarihleri ve zamanları veri tabanında güncel tutulur.
+Diğer kısımlarda olduğu gibi burada sayfanın sol kısmına menüleri oluşturdum.<br> Daha sonra tablo oluşturma etiketi ile öğrenciye ait bilgiler olan kimlik numarası,<br> adı – soyadı, projesi, öğrenci onay tarihi, görüntüleme, staj defter onayı ve defter onay tarihi özelliklerini tablo satırına ekledim;
+</p>
+<xmp>
+<table class="table table-response table-striped table-bordered">
+	<thead class="thead-dark">
+	<tr><th scope="col">#</th>
+	      <th scope="col">TC Kimlik No</th>
+                     <th scope="col">Adı Soyadı</th>
+	      <th scope="col">Projesi</th>
+	      <th scope="col">Öğrenci Onay Tarihi</th>
+	      <th scope="col">GÖRÜNTÜLE</th>
+	      <th scope="col">Staj Defter Onayı</th>
+	      <th scope="col">Defter Onay Tarihi</th></tr>
+
+</xmp>
+<p>Daha sonra PDO ile veri tabanından sorgu işlemi yaparak verileri yazdırdım. </p>
+<xmp><th scope="row"><?php echo $key; ?></th>
+		<td><?php echo $val["tc_no"]; ?></td>								
+                <td><?php echo $val["name"]; ?></td>	
+		<td><?php echo $val["proje"]; ?></td>	
+		<td><?php echo $val["ogr_defter_bitisi_tarihi"]; ?></td>			</xmp>
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+
+
+
+
+</h4>
+
+<hr> </hr>
+
+<h2>26. Gün (27.08.2020)</h2>
+<h4>
+
+<p>Bugün stajyerler.php dosyasını oluşturmaya devam ettim. <br>Burada stajyer öğrencilerin staj defterlerini tamamladıktan sonra adminin onaylama yapması ve staj defterlerini görüntülemesi içindir.<br> Adminin staj defterlerini görüntülemesi için “Görüntüle ” adında bir buton oluşturdum. Hangi öğrencinin staj defteri görüntülenmesi isteniyorsa o butona tıklanır.<br> Daha sonra o öğrencinin staj defterine yönlendirilir. Bu yönlendirilen sayfa stajyer onay sayfasıdır. </p>
+<xmp>
+<form action="stajer_onay.php" method="post">
+	<?php													
+if($val["defter_onay"] == 0){		
+		echo '												
+		<input type="hidden" value="'.$val["id"].'" name="stajer_id" />		
+			<button name="admin_defter_goruntule" type="submit" class="btn btn-primary"> GÖRÜNTÜLE </button>';										
+} else if($val["defter_onay"] == 1){					
+		echo '												
+		<input type="hidden" value="'.$val["id"].'" name="stajer_id" />			         
+			 <button name="admin_defter_goruntule" type="submit" class="btn btn-success"> GÖRÜNTÜLE </button>';
+					} ?>	</form>		
+</xmp>
+<p>Admin stajyerin staj defterini tamamen  onaylaması için bir buton oluşturdum. Onayla olarak bulunan bulunan butona tıklandığında “Onaylı” olarak gözükecektir. <br>Onayı kaldırmak içinde tekrar tıklanarak sıfır değeri verilebilir;</p>
+<xmp>
+if($val["defter_onay"] == 0){
+	echo '
+		<input type="hidden" value="'.$val["id"].'" name="stajer_id" />				
+		<button name="admin_defter_onayi" type="submit" class="btn btn-warning"> Onayla </button>';
+} else if($val["defter_onay"] == 1){										
+	echo '							
+		<input type="hidden" value="'.$val["id"].'" name="stajer_id" />				
+		<button name="admin_defter_onay_kaldir" type="submit" class="btn btn-success"> Onaylı </button>';
+
+</xmp>
+<p>Defter onayı gerçekleşir ise defter onay tarihindeki değer alınarak yazılır.</p>
+
+<br> <img src="merve611.github.io\staj_resimler\defter_tamamlama.jpg"  alt ="merve" width ="1200" height = "250"/>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+
+
+
+
+
+</h4>
+<hr> </hr>
+
+<h2>27. Gün (28.08.2020)</h2>
+<h4>
+<p>Staj defterlerinin sayfa sayfa görüntülemek ve onaylamak için stajyer onaylama adında php dosyası oluşturdum.<br> Admin bu alanda defterde bulunan bütün sayfaları tek tek görüntüleyerek sayfa sayfa onay verebilecek.<br> Burada staj defterinin görüntülenmesi için değişkenler kontrol edilip post ediliyor;</p>
+<xmp>
+if ($_SESSION["login"] == "true" && $_SESSION["yetki"] == 2){
+		include ("include/url.php");
+		if(isset($_POST["admin_defter_goruntule"]) || isset($_POST["admin_defter_goruntule_in"]) || isset($_POST["admin_gun_onayi"]) || isset($_POST["admin_gun_onayi_kaldir"])){
+			if(isset($_POST["admin_defter_goruntule"])){ $defter_gun_no = 1; }
+			else{ $defter_gun_no = $_POST["defter_gun_no"]; } ?>
+
+
+</xmp>
+<p>Diğer admin sayfalarında olduğu gibi sayfanın sol kısmına tekrar menüleri yerleştirdim ve stajyerler kısmını aktif ettim. <br>
+Sayfanın sağ kısmına stajyerlerin eklediği günleri numaralı olarak yerleştirdim ve görüntülemesi için buton oluşturdum. <br>Bu numaralandırılmış günleri “Staj Defter Günleri” başlığı altında oluşturdum. Staj defteri oluşturulurken kullanılan id bilgilerini veri tabanından sorgulattım. <br>
+Yeni bir form oluşturdum. Bu form içine öğrenci ne kadar gün oluşturmuş burada görünecek.
+</p>
+<xmp>
+<form class="col-md-3" action="stajer_onay.php" method="post">
+       <div class="form-group">						
+            <label class="control-label color-f0"><?php echo $val["gun"]; ?>. Gün</label>		
+	<input name="defter_gun_id" type="hidden" value="<?php echo $val["id"]; ?>" />	
+	<input name="defter_gun_no" type="hidden" value="<?php echo $val["gun"]; ?>" />	
+	<input name="stajer_id" type="hidden" value="<?php echo $val["ogr_id"]; ?>" /> 
+	<?php if($val["onay"] == 0){										
+		echo '<button name="admin_defter_goruntule_in" type="submit" class="btn btn-primary"> GÖRÜNTÜLE </button>';				
+	} else  if($val["onay"] == 1){										
+		echo '<button name="admin_defter_goruntule_in" type="submit" class="btn btn-success"> GÖRÜNTÜLE </button>';								
+				} ?> </div></form>	
+
+
+
+
+</xmp>
+<p>Hangi gün görüntülenmek isteniyorsa gün id si alınarak ekrana yansıtılıyor. </p>
+<br> <img src="merve611.github.io\staj_resimler\stajyer_onay_gunler.jpg"  alt ="merve" width ="1200" height = "250"/>
+
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+
+
+
+
+</h4>
+<hr> </hr>
+
+<h2>28. Gün (31.08.2020)</h2>
+<h4>
+<p>Bugün stajyerlerin staj defterlerinin hangi günde ne çalıştıklarını incelemek için konu ve içeriklerinin tutulduğu bir alan oluşturacağım. <br>Bu alanda admin bu sayfaları tek tek onaylayabilecek. <br>
+Admin kaçıncı günü görüntülemek istiyor ise o butona tıkladığında örneğin 1.günü görüntülediğinde defterde “1.Gün Staj Sayfam “ başlığıyla ekrana yansıyacaktır. 
+</p>
+<xmp>
+<?php if($val["onay"] == 0) { 
+        echo '<legend class="legend-style-1 legend-style-1 color-007BFF">'.$defter_gun_no.'. GÜN STAJ SAYFAM</legend>';								
+else if($val["onay"] == 1) {				 
+echo '<legend class="legend-style-1 legend-style-1">'.$defter_gun_no.'. GÜN STAJ SAYFAM</legend>'; } ?>	
+
+</xmp>
+<p>Dada sonra ilgili günün konusunun ve içeriğinin yazılacağı alanı oluşturdum;
+Konu;
+</p>
+<xmp>
+	<div class="form-group col-md-8">
+		<label class="control-label color-f0">KONU</label>					
+		<div class="form-control"><?php echo $val['konu']; ?></div>		
+
+</xmp>
+<p>İçerik;</p>
+<xmp>
+	<div class="form-group col-md-12">
+		<label class="control-label color-f0">İÇERİK</label>					
+		<div class="summernote-style"><?php echo $val['_text']; ?></div>								
+</div>			
+
+</xmp>
+<p>Admin stajyerin ilgili gününü inceledikten sonra sayfa sonunda o gün için “Günü Onayla” adında bir buton oluşturdum.<br> O gün için onay verdiğinde buton “Gün Onaylı” olarak yeşil bir butona dönüşerek değişecektir. </p>
+<xmp>
+<form action="stajer_onay.php" method="post">
+       <input type="hidden" name="defter_gun_id" value="<?php echo $val['id']; ?>">	
+       <input type="hidden" name="defter_gun_no" value="<?php echo $val['gun']; ?>">	
+       <input type="hidden" name="stajer_id" value="<?php echo $_POST["stajer_id"] ?>"> 
+	<?php if($val["onay"] == 0){ ?>								
+		<button name="admin_gun_onayi" type="submit" class="btn btn-primary" style="float: right;">GÜNÜ ONAYLA</button>			
+		<?php } else if($val["onay"] == 1){ ?>								
+		<button name="admin_gun_onayi_kaldir" type="submit" class="btn btn-success" style="float: right;">GÜN ONAYLI</button>				
+		<?php } ?>		
+		<a href="stajerler.php" class="btn btn-primary" style="float: left;">GERİ</a>	</form>  
+<br> <img src="merve611.github.io\staj_resimler\staj_onay_konu.jpg"  alt ="merve" width ="1000" height = "480"/>
+
+</xmp>
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+<p></p>
+<xmp></xmp>
+</h4>
+<hr> </hr>
+
+<h2>29. Gün (01.09.2020)</h2>
+
+
+<hr> </hr>
+
+<h2>30. Gün (02.09.2020)</h2>
+
+
+
+
+
+
+
+
 
 
 
